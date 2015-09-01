@@ -1,0 +1,48 @@
+<html>
+<head>
+	<TITLE>DrWho Picker</TITLE>
+</head>
+<body>
+	<h1>Doctor Who Episode Selector</h1>
+	<div><button onclick="onSelectButton()">Press to select episode</button></div>
+	<div id="resultContainer"></div>
+
+	<script type="text/javascript">
+		// A good place to start understanding the following table is http://www.w3schools.com/js/js_datatypes.asp
+        var seasonMap = {
+        	"1": [1,2,3,4,5,6,7,8,9,10,11,12,13, "Christmas"],
+        	"2": [1,2,3,4,5,6,7,8,9,10,11,12,13, "Christmas"],
+        	"3": [1,2,3,4,5,6,7,8,9,10,11,12,13, "Christmas"],
+        	"4": [1,2,3,4,5,6,7,8,9,10,11,12,13, "Christmas", "The Next Doctor", "Planet of the Dead", "The Waters of Mars", "The End of Time part 1", "The End of Time part 2"],
+        	"5": [1,2,3,4,5,6,7,8,9,10,11,12,13, "Christmas"],
+        	"6": [1,2,3,4,5,6,7,8,9,10,11,12,13, "Christmas"],
+        	"7": [1,2,3,4,5,6,7,8,9,10,11,12,13, "Christmas Special 1", "Christmas Special 2", "Special"],
+        	"8": [1,2,3,4,5,6,7,8,9,10,11,12   , "Christmas"]
+        };
+
+        // Produce a value between min and max
+		function random(min, max) {
+			var range = max - min + 1;
+			// Math.random provides values between 0 and 0.99999... We need 1..range
+			//   so we double by range and add 1. The Math.floor() function rounds down (2.99 -> 2)
+			var result = Math.floor(Math.random() * range + 1);
+			if (result > max) {
+				result = max;
+			}
+			return result;
+		}
+
+
+		function onSelectButton() {
+			var season = random(1, 8);
+			var seasonData = seasonMap[season];
+			var episodeNumber = random(1, seasonData.length);
+
+			var episodeName = "Episode "+seasonData[episodeNumber - 1];
+
+			document.getElementById("resultContainer").innerHTML="<div> episode: "+episodeName+"<br/>season: "+season+"</div>";
+		}
+	</script>
+
+</body>
+</html>
